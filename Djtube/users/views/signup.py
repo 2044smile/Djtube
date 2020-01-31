@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 
 
-
 class SignupView(View):
     def get(self, request, *args, **kwargs):
         return render(

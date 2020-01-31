@@ -1,5 +1,7 @@
+from django.urls import reverse
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 
 
 class LoginView(View):
@@ -9,3 +11,20 @@ class LoginView(View):
             'users/login.html',
             context={},
         )
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username')
+        password = request.POST.get('username')
+
+        next_url = request.POST.get('next_url') or reverse('login')  # FIXME: redirect to home
+
+        user = authenticate(
+            username=username,
+            password=password,
+        )
+
+        if user:
+            login(request, user)
+            return redirect(reverse('login'))
+
+        return redirect(next_url)
