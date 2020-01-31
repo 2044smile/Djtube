@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'pipeline',
+
     'users',
-    # 'pipeline',
 ]
 
 MIDDLEWARE = [
@@ -127,33 +128,23 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT_DIR, 'dist', 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Djtube', 'static'),
 ]
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#     'pipeline.finders.PipelineFinder',
-# )
-# PIPELINE = {
-#     'PIPELINE_ENABLED': True,
-#     'JAVASCRIPT': {
-#         'stats': {
-#             'source_filenames': (
-#                 'js/application.js',
-#             ),
-#             'output_filename': 'output.js'
-#         }
-#     },
-#     'STYLESHEET': {
-#         'basic': {
-#             'source_filenames': (
-#                 'css/application.css',
-#                 'css/partials/header.css',
-#                 'css/partials/footer.css',
-#             ),
-#             'output_filename': 'output.css'
-#         }
-#     }
-# }
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+PIPELINE = {
+    'STYLESHEETS': {  #
+        'djtube': {  # stats라는 이름으로
+            'source_filenames': (  # source 파일들을 다 합쳐서
+                'css/application.css',
+                'css/partials/*.css',
+            ),
+            'output_filename': 'css/djtube.css'  # 해당 파일로 압축해준다.
+        }
+    },
+}
 
 # Auth
 AUTH_USER_MODEL = 'users.User'
