@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    # 'pipeline',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,37 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT_DIR, 'dist', 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Djtube', 'static'),
+]
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#     'pipeline.finders.PipelineFinder',
+# )
+# PIPELINE = {
+#     'PIPELINE_ENABLED': True,
+#     'JAVASCRIPT': {
+#         'stats': {
+#             'source_filenames': (
+#                 'js/application.js',
+#             ),
+#             'output_filename': 'output.js'
+#         }
+#     },
+#     'STYLESHEET': {
+#         'basic': {
+#             'source_filenames': (
+#                 'css/application.css',
+#                 'css/partials/header.css',
+#                 'css/partials/footer.css',
+#             ),
+#             'output_filename': 'output.css'
+#         }
+#     }
+# }
 
 # Auth
 AUTH_USER_MODEL = 'users.User'
