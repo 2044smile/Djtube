@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.urls import reverse
 from django.views import View
 from django.shortcuts import render, redirect
@@ -25,6 +26,11 @@ class LoginView(View):
 
         if user:
             login(request, user)
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                '성공적으로 로그인 되었습니다.'
+            )
             return redirect(reverse('login'))
 
         return redirect(next_url)
