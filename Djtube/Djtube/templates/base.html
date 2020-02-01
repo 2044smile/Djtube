@@ -1,0 +1,17 @@
+{% load pipeline %}<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% stylesheet 'djtube' %}
+    <title>Document</title>
+</head>
+<body>
+{% include "partials/header.html" %}
+{% include "partials/messages.html" %}
+
+<section id="content">
+    {% block content %}{% endblock %}
+</section>
+{% include "partials/footer.html" %}
+</body>
+</html>

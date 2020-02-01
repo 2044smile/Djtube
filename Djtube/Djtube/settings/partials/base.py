@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
+    'pipeline',
+
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +59,9 @@ ROOT_URLCONF = 'Djtube.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'Djtube', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # python-social-auth
+                'social_django.context_processors.login_redirect',  # python-social-auth
             ],
         },
     },
@@ -118,3 +127,54 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT_DIR, 'dist', 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Djtube', 'static'),
+]
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+PIPELINE = {
+    'STYLESHEETS': {  #
+        'djtube': {  # stats라는 이름으로
+            'source_filenames': (  # source 파일들을 다 합쳐서
+                'css/application.css',
+                'css/partials/*.css',
+            ),
+            'output_filename': 'css/djtube.css'  # 해당 파일로 압축해준다.
+        }
+    },
+}
+
+# Auth
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = '/login/'
+
+SIGNUP_SUCCESS_MESSAGE = '성공적으로 회원가입 완료'
+LOGIN_SUCCESS_MESSAGE = '성공적으로 로그인 완료'
+LOGOUT_SUCCESS_MESSAGE = '성공적으로 로그아웃 완료'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+#Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '2820024684762865'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b8dddc1b978f44520481da72c945fb59'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
