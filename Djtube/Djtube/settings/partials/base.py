@@ -150,3 +150,7 @@ PIPELINE = {
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = '/login/'
+
+SIGNUP_SUCCESS_MESSAGE = '성공적으로 회원가입 완료'
+LOGIN_SUCCESS_MESSAGE = '성공적으로 로그인 완료'
+LOGOUT_SUCCESS_MESSAGE = '성공적으로 로그아웃 완료'

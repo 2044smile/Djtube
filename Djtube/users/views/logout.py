@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -11,6 +12,6 @@ class LogoutView(View):
         messages.add_message(
             request,
             messages.SUCCESS,
-            '로그아웃이 성공적으로 되었습니다.',
+            settings.LOGOUT_SUCCESS_MESSAGE
         )
         return redirect(reverse('login'))
