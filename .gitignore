@@ -1,6 +1,8 @@
 .idea
 .db.sqlite3
 
+secret.py
+
 # Django migrations
 migrations
 
