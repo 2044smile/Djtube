@@ -5,7 +5,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls'), name='users'),
-    path('', include('social.apps.django_app.urls', namespace='social')),
+    path('', include('social.apps.django_app.urls'), name='social'),
+    path('posts/', include('posts.urls'), name='posts'),
 ]
 
 if settings.DEBUG:

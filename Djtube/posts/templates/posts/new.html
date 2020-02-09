@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>New Post</h1>
+
+<iframe
+        width="500"
+        height="315"
+        src="https://www.youtube.com/embed/AAOyOZ3GeZ0"
+        frameborder="0"
+        allowfullscreen></iframe>
+
+<section>
+    <form action="" method="POST">
+        <input type="text" name="video_id" placeholder="Youtube video_id" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="content" id="" cols="30" rows="10" placeholder="Content"></textarea>
+        <input type="submit" value="confirm">
+    </form>
+</section>
+{% endblock %}
