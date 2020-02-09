@@ -3,5 +3,7 @@ python:
         - "3.7.6"
 install:
         - pip install -r requirements/development.txt
+script:
+        - python Djtube/manage.py test users posts
 notifications:
         slack: cslee-group:yc5qJGEEdfA6Ps3g8kXltcsM
