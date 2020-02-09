@@ -27,12 +27,12 @@ class Post(models.Model):
 
     def get_youtube_original_url(self):
         from posts.utils.youtube import get_youtube_original_url as get_youtube_original_url_from_video_id
-        return get_youtube_original_url(self.video_id)
+        return get_youtube_original_url_from_video_id(self.video_id)
     youtube_original_url = property(get_youtube_original_url)
 
     def get_youtube_embed_url(self):
         from posts.utils.youtube import get_youtube_embed_url as get_youtube_embed_url_from_video_id
-        return get_youtube_embed_url(self.video_id)
+        return get_youtube_embed_url_from_video_id(self.video_id)
     youtube_embed_url = property(get_youtube_embed_url)
 
     def __str__(self):

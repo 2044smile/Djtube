@@ -1,1 +1,1 @@
-from . create import PostCreateFormView
+from . create import PostCreateView, PostCreateConfirmView
