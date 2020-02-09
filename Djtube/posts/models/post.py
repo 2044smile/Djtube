@@ -26,10 +26,10 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_youtube_original_url(self):
-        self.video_id='djtube'
         return "https://www.youtube.com/watch?v={post_video_id}".format(
             post_video_id=self.video_id
         )
+    youtube_original_url = property(get_youtube_original_url)
 
     def __str__(self):
         return self.title
