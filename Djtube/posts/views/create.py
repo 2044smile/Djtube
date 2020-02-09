@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import View
 
+from posts.models import Post
+
 
 class PostCreateFormView(View):
     def get(self, request, *args, **kwargs):
@@ -11,13 +13,12 @@ class PostCreateFormView(View):
         )
 
     def post(self, request, *args, **kwargs):
-        pass
+        Post.objects.create(
+            video_id=request.POST['video_id'],
+            title=request.POST['title'],
+            content=request.POST['content'],
+        )
 
 
-# class PostCreateConfirmView(View):
-#     def post(self, request, *args, **kwargs):
-#         return render(
-#             request,
-#             'posts/confirm.html',
-#             context={},
-#         )
+class PostCreateConfirmView(View):
+    pass
