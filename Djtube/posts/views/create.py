@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
 from posts.models import Post
 from posts.utils import youtube
 
 
-class PostCreateView(View):
+class PostCreateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(
             request,
@@ -24,12 +25,11 @@ class PostCreateView(View):
             title=title,
             content=content,
         )
-        post.save()
 
         return redirect(reverse('posts:create'))
 
 
-class PostCreateConfirmView(View):
+class PostCreateConfirmView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return redirect(reverse('posts:create'))
 
