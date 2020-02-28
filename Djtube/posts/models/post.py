@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from users.models import User
 
 
@@ -39,6 +40,11 @@ class Post(models.Model):
         from posts.utils.youtube import get_youtube_embed_url as get_youtube_embed_url_from_video_id
         return get_youtube_embed_url_from_video_id(self.video_id)
     youtube_embed_url = property(get_youtube_embed_url)
+
+    def get_absolute_url(self):
+        return reverse("posts:detail", kwargs={
+            "pk": self.id,
+        })
 
     def __str__(self):
         return self.title
