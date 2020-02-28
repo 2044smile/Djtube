@@ -3,3 +3,4 @@ ipython[all]
 django-debug-toolbar
 django-extensions
 hashids
+Pillow
