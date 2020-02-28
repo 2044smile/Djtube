@@ -4,3 +4,4 @@ from .base import PostBaseView
 
 class PostDetailView(PostBaseView, DetailView):
     template_name = "posts/detail.html"
+

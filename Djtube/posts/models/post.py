@@ -8,6 +8,11 @@ class Post(models.Model):
         User,
         on_delete=models.CASCADE
     )
+    hash_id = models.CharField(
+        max_length=8,
+        blank=True,
+        null=True
+    )
     video_id = models.CharField(
         max_length=16,
     )
