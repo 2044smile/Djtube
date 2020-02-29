@@ -12,7 +12,7 @@ urlpatterns = [
     path('', include('users.urls'), name='users'),
     path('', include('social.apps.django_app.urls'), name='social'),
     path('posts/', include('posts.urls'), name='posts'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
