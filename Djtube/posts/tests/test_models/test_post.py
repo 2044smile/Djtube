@@ -13,7 +13,7 @@ class PostModelTestCase(TestCase):
         )
 
         # Create a post
-        self.post_video_id = 'djtube'
+        self.post_video_id = 'JdBD8Lvr2tg'
 
         self.post = self.user.post_set.create(
             video_id=self.post_video_id,
