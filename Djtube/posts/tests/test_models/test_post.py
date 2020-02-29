@@ -6,7 +6,7 @@ from posts.models import Post
 
 class PostModelTestCase(TestCase):
 
-    def setUp(self):
+    def setUp(selaf):
         self.user = get_user_model().objects.create_user(
             username="test_username",
             password="test_password",

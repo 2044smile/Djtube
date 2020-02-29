@@ -143,6 +143,7 @@ PIPELINE = {
         'djtube': {  # stats라는 이름으로
             'source_filenames': (  # source 파일들을 다 합쳐서
                 'css/application.css',
+                'css/reset.css',
                 'css/partials/*.css',
             ),
             'output_filename': 'css/djtube.css'  # 해당 파일로 압축해준다.
